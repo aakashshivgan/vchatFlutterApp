@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "797619977916",
+    "project_id": "vechat-flutter",
+    "storage_bucket": "vechat-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797619977916:android:1f7a4f8312eb8774f8dab9",
+        "android_client_info": {
+          "package_name": "com.example.vechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797619977916-kihh31106urlq7ipii67j5hf262dsi8u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vechat",
+            "certificate_hash": "5f63cc8bc3446927dee1d70e2f791f54a297bc32"
+          }
+        },
+        {
+          "client_id": "797619977916-b0srspekvd8966166ojnror3463q3ic1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3daUuyCvWuggfj8Ev0lo_OxTGFrEWZVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797619977916-b0srspekvd8966166ojnror3463q3ic1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
