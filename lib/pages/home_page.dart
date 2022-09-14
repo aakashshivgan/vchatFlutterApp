@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vechat/services/auth_services.dart';
+import 'package:vechat/widgets/widgets.dart';
+import 'package:vechat/pages/auth/login_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,11 +11,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  AuthServices authServices = AuthServices();
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         body: Center(
-      child: Text("Homepage"),
-    ));
+            child: ElevatedButton(
+                onPressed: () {
+                  authServices.signOut();
+                  nextScreen(context, const LoginPage());
+                },
+                child: const Text("logout"))));
   }
 }
