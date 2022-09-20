@@ -6,6 +6,20 @@ class AuthServices {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
 // login function
+  Future loginUserWithEmailandPassword(String email, String password) async {
+    try {
+      User user = (await firebaseAuth.signInWithEmailAndPassword(
+              email: email, password: password))
+          .user!;
+      if (user != null) {
+        // call the database service to update the user database
+
+        return true;
+      }
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
+  }
 
 // register function
   Future registerUserWithEmailandPassword(
@@ -16,7 +30,7 @@ class AuthServices {
           .user!;
       if (user != null) {
         // call the database service to update the user database
-        await DatabaseService(uid: user.uid).updateUserData(fullname, email);
+        await DatabaseService(uid: user.uid).savingUserData(fullname, email);
         return true;
       }
     } on FirebaseAuthException catch (e) {
