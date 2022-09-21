@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const Text(
-                            "Groupies",
+                            "Vechat",
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.w700,

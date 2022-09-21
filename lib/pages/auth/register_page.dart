@@ -42,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const Text(
-                            "Groupies",
+                            "Vechat",
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.w700,
@@ -62,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           TextFormField(
                             decoration: textInputDecoration.copyWith(
-                              labelText: "Full name",
+                              labelText: "Fullname",
                               prefixIcon: Icon(
                                 Icons.person,
                                 color: Constants().primaryColor,
