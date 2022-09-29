@@ -7,6 +7,7 @@ import 'package:vechat/services/database_service.dart';
 import 'package:vechat/widgets/widgets.dart';
 import 'package:vechat/pages/search_page.dart';
 
+import '../widgets/group_tile.dart';
 import 'auth/login_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,11 +22,22 @@ class _HomePageState extends State<HomePage> {
   String email = "";
   AuthServices authServices = AuthServices();
   Stream? groups;
+  bool _isLoading = false;
+  String groupName = "";
 
   @override
   void initState() {
     super.initState();
     gettingUserData();
+  }
+
+// String Manipulation
+  String getId(String res) {
+    return res.substring(0, res.indexOf("_"));
+  }
+
+  String getName(String res) {
+    return res.substring(res.indexOf("_") + 1);
   }
 
   gettingUserData() async {
@@ -169,7 +181,17 @@ class _HomePageState extends State<HomePage> {
         if (snapshot.hasData) {
           if (snapshot.data["groups"] != Null) {
             if (snapshot.data["groups"].length != 0) {
-              return const Text("hello");
+              return ListView.builder(
+                  itemCount: snapshot.data['groups'].length,
+                  itemBuilder: ((context, index) {
+                    int reverseIndex =
+                        snapshot.data["groups"].length - index - 1;
+                    return GroupTile(
+                        username: snapshot.data["Fullname"],
+                        groupId: getId(snapshot.data["groups"][reverseIndex]),
+                        groupName:
+                            getName(snapshot.data["groups"][reverseIndex]));
+                  }));
             } else {
               return noGroupWidgets();
             }
@@ -186,7 +208,85 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  popUpDialog(BuildContext context) {}
+  popUpDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              elevation: 10,
+              title: const Text(
+                " Create a group",
+                textAlign: TextAlign.left,
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _isLoading == true
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        )
+                      : TextField(
+                          onChanged: (val) {
+                            setState(() {
+                              groupName = val;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor),
+                                borderRadius: BorderRadius.circular(20)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor),
+                                borderRadius: BorderRadius.circular(20)),
+                            errorBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color: Colors.red),
+                                borderRadius: BorderRadius.circular(20)),
+                          ),
+                        ),
+                ],
+              ),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).primaryColor),
+                  child: const Text("Cancel"),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    if (groupName != "") {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      DatabaseService(
+                              uid: FirebaseAuth.instance.currentUser!.uid)
+                          .createGroup(username,
+                              FirebaseAuth.instance.currentUser!.uid, groupName)
+                          .whenComplete(() {
+                        _isLoading = false;
+                      });
+                      Navigator.of(context).pop();
+                      showSnackBar(
+                          context, Colors.green, "Group created successfully");
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).primaryColor),
+                  child: const Text("Create"),
+                ),
+              ],
+            );
+          });
+        });
+  }
 
   noGroupWidgets() {
     return Container(
@@ -195,10 +295,15 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
-            Icons.add_circle_rounded,
-            size: 75,
-            color: Theme.of(context).primaryColor,
+          GestureDetector(
+            onTap: () {
+              popUpDialog(context);
+            },
+            child: Icon(
+              Icons.add_circle_rounded,
+              size: 75,
+              color: Theme.of(context).primaryColor,
+            ),
           ),
           const SizedBox(
             height: 20,
