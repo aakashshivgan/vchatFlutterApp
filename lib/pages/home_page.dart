@@ -289,30 +289,32 @@ class _HomePageState extends State<HomePage> {
   }
 
   noGroupWidgets() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTap: () {
-              popUpDialog(context);
-            },
-            child: Icon(
-              Icons.add_circle_rounded,
-              size: 75,
-              color: Theme.of(context).primaryColor,
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                popUpDialog(context);
+              },
+              child: Icon(
+                Icons.add_circle_rounded,
+                size: 75,
+                color: Theme.of(context).primaryColor,
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text(
-            "You've not joined any group,click on the add icon to create a group or use search button ",
-            textAlign: TextAlign.center,
-          )
-        ],
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              "You've not joined any group,click on the add icon to create a group or use search button ",
+              textAlign: TextAlign.center,
+            )
+          ],
+        ),
       ),
     );
   }
