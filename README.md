@@ -7,7 +7,7 @@ A new Flutter project.
 <img src="image/drawer.jpg" width="200">
 <img src="image/exit.jpg" width="200">
 <img src="image/grp info.jpg" width="200">
-<img src="image/hompage.jpg" width="200">
+<img src="image/homepage.jpg" width="200">
 <img src="image/login page.jpg" width="200">
 <img src="image/logout.jpg" width="200">
 <img src="image/profile.jpg" width="200">
