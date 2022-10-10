@@ -9,4 +9,4 @@ A new Flutter project.
 
 
 ## WebApp ScreenShot
-<img src="image/1.jpg" width="400"><img src="image/6.jpg" width="400">
+<img src="image/1.png" width="400"><img src="image/6.png" width="400">
