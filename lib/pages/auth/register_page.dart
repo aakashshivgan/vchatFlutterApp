@@ -25,6 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.cyan[50],
         body: _isLoading
             ? Center(
                 child: CircularProgressIndicator(

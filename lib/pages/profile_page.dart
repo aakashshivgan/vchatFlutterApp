@@ -20,6 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.cyan[50],
         appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
           title: const Text("Profile"),

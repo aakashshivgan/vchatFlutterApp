@@ -29,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.cyan[50],
         body: _isLoading
             ? Center(
                 child: CircularProgressIndicator(

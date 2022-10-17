@@ -66,6 +66,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.cyan[50],
       appBar: AppBar(
         centerTitle: true,
         actions: [
